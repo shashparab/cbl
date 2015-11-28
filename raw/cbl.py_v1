@@ -1,0 +1,44 @@
+#!/usr/bin/python3
+import tkinter as tk
+from tkinter import * 
+import sys
+
+class Application(tk.Frame):
+  
+  def __init__(self, master=None):
+    tk.Frame.__init__(self, master)
+    self.grid()
+    self.master = master
+    self.createWidgets()
+
+
+
+  def createWidgets(self):
+    self.sheetName = Label(self, text='SETTLEMENT SHEET')
+    self.sheetName.grid()
+    
+    def printTxt():
+      f = open('cbl.csv', 'a')
+      sys.stdout = f
+      print(salesPerson.get())
+
+    Label(self, text="Sales Person's Name :").grid(row=1)
+    salesPerson = Entry(self)
+    salesPerson.grid(row=1,column=1)
+    ok = tk.Button(self, text='Ok', command=printTxt) 
+    ok.grid(row=1,column=2)
+
+    self.quitButton = tk.Button(self, text='Quit', command=self.quit)
+    self.quitButton.grid()
+
+
+
+
+root = tk.Tk()
+root.geometry("1000x600")
+
+app = Application(root)
+app.master.title('Californian Beverages LTD')
+root.mainloop()
+
+
